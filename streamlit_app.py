@@ -36,6 +36,7 @@ st.subheader("Product analysis")
 
 # Filtering sidebar
 #st.sidebar.title('title!')
+st.sidebar.image("https://github.com/WilliamSchultz/steamlit_app/blob/main/Logomark.png", use_column_width=True)
 st.sidebar.subheader('Filter Data')
 min_rev, max_rev = st.sidebar.slider('Select revenue range', min_value=df['rev'].min(), max_value=df['rev'].max(), value=(df['rev'].min(), df['rev'].max()))
 
