@@ -38,7 +38,7 @@ filtered_df = df[(df['rev'] >= min_rev) & (df['rev'] <= max_rev)]
 if selected_brand:
     filtered_df = filtered_df[filtered_df['brand'] == selected_brand]
 if url_filter:
-    filtered_df = filtered_df[filtered_df['URL'].str.contains(url_filter)]
+    filtered_df = filtered_df[filtered_df['url'].str.contains(url_filter)]
 if selected_category:
     filtered_df = filtered_df[filtered_df['category'] == selected_category]
 
