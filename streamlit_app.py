@@ -6,7 +6,7 @@ df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/allb.
 df = df[['domain', 'title', 'rev', 'items', 'category', 'brand', 'url']]
 
 #st.set_option('theme.secondaryBackgroundColor', '#A670FF')
-st.set_option('theme.accent', '#A670FF')
+#st.set_option('theme.accent', '#A670FF')
 
 # Convert 'rev' column to dollar format
 #df['rev'] = df['rev'].apply(lambda x: '${:,.2f}'.format(x))
