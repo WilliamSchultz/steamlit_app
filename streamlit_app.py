@@ -74,7 +74,7 @@ if st.sidebar.button('Reset All Filters'):
 # Display filtered data in table
 st.download_button(
     label="Download data as CSV",
-    data=csv,
+    data=filtered_df,
     file_name='Grips Product Sample.csv',
     mime='text/csv',
 )
