@@ -7,7 +7,7 @@ from pandas.api.types import (
 import pandas as pd
 import streamlit as st
 
-df = pd.read_csv('F:/Streamlit/allb.csv')
+df = pd.read_csv('~/allb.csv')
 
 
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
