@@ -73,4 +73,4 @@ if st.sidebar.button('Reset All Filters'):
 
 # Display filtered data in table
 st.write(filtered_df, width=1200)
-
+st.write(f"Results: {len(filtered_df)}")
