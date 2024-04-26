@@ -36,7 +36,8 @@ st.subheader("Product analysis")
 
 # Filtering sidebar
 st.sidebar.title('* Grips')
-#st.sidebar.image("https://github.com/WilliamSchultz/steamlit_app/blob/main/Logomark.png", use_column_width=True)
+htp="https://raw.githubusercontent.com/djswoosh/Music-Recommendation-Engine-using-FMA-Dataset/main/1200px-The_Echo_Nest_logo.svg.png"
+st.image(htp, caption= 'logo', width=350)
 st.sidebar.subheader('Filter Data')
 min_rev, max_rev = st.sidebar.slider('Select revenue range', min_value=df['rev'].min(), max_value=df['rev'].max(), value=(df['rev'].min(), df['rev'].max()))
 
