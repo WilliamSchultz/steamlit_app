@@ -28,25 +28,18 @@ st.title("Grips product analysis")
 
 data = df
 
-# Create two columns for filters
-filter_col1, filter_col2 = st.columns(2)
+# Create filters
+with st.sidebar:
+    st.write("### Filters")
+    rev_range = st.slider("Revenue Range", min_value=0, max_value=500, value=(0, 500))
+    selected_brand = st.selectbox("Brand", df['brand'].unique())
 
-# Filter for the "rev" column
-with filter_col1:
-    st.write('### Filter by Revenue:')
-    min_rev = st.slider('Min Revenue', min_value=0, max_value=250, value=0)
-    max_rev = st.slider('Max Revenue', min_value=0, max_value=250, value=250)
+# Apply filters to the data
+filtered_df = df[(df['rev'] >= rev_range[0]) & (df['rev'] <= rev_range[1]) & (df['brand'] == selected_brand)]
 
-# Filter for the "brand" column
-with filter_col2:
-    st.write('### Filter by Brand:')
-    selected_brands = st.multiselect('Select Brands', df['brand'].unique())
-
-# Apply filters to the dataframe
-filtered_df = df[(df['rev'] >= min_rev) & (df['rev'] <= max_rev) & df['brand'].isin(selected_brands)]
-
-# Display the filtered dataframe
+# Display the filtered data
 st.write(filtered_df)
+
 
 
 #st.dataframe(df)
