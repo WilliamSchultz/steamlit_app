@@ -26,6 +26,8 @@ st.title("Grips product analysis")
 #Slidebar filter
 #st.sidebar.header("Choose your product")
 
+data = df
+
 # Create filters for 'rev' column (select range) and 'brand' column
 rev_range = st.slider("Select revenue range", float(data['rev'].min()), float(data['rev'].max()), (float(data['rev'].min()), float(data['rev'].max())))
 selected_brand = st.selectbox("Select brand", data['brand'].unique())
