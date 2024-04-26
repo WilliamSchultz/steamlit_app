@@ -72,10 +72,17 @@ if st.sidebar.button('Reset All Filters'):
     st.experimental_rerun()
 
 # Display filtered data in table
+@st.cache_data
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+
+csv = convert_df(filtered_df)
+
 st.download_button(
     label="Download data as CSV",
-    data=filtered_df,
-    file_name='Grips Product Sample.csv',
+    data=csv,
+    file_name='large_df.csv',
     mime='text/csv',
 )
 st.write(filtered_df, width=1200)
