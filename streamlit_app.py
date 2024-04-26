@@ -1,6 +1,8 @@
 import pandas as pd
 import streamlit as st
 st.set_page_config(layout="wide") 
+with open( "app\style.css" ) as css:
+    st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
 
 df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/allb.csv?raw=true')
 
@@ -43,7 +45,7 @@ url_filter = st.sidebar.text_input('Enter URL to filter')
 
 selected_category = st.sidebar.selectbox('Select category', df['category'].unique())
 
-min_items, max_items = st.sidebar.slider('Select item range', min_value=df['items'].min(), max_value=df['items'].max(), value=(df['items'].min(), df['items'].max()))
+min_items, max_items = st.sidebar.slider('Select item sold range', min_value=df['items'].min(), max_value=df['items'].max(), value=(df['items'].min(), df['items'].max()))
 
 search_title = st.sidebar.text_input('Search by title')
 
