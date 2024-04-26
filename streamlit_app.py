@@ -1,6 +1,9 @@
 import pandas as pd
 import streamlit as st
 
+st.set_option('theme.secondaryBackgroundColor', '#A670FF')
+st.set_option('theme.accent', '#A670FF')
+
 df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/allb.csv?raw=true')
 
 df = df[['domain', 'title', 'rev', 'items', 'category', 'brand', 'url']]
