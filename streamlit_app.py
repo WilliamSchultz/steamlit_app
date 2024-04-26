@@ -27,7 +27,8 @@ df = df[['domain', 'title', 'rev', 'items', 'category', 'brand', 'url']]
 #App title
 
 st.title("Grips")
-st.markdown("**Allbirds.com** Product Analysis")
+st.subheader("Allbirds.com Product Analysis")
+st.markdown("February 2024")
 
 #st.markdown('##')
 
