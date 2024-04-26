@@ -26,18 +26,22 @@ st.title("Grips product analysis")
 #Slidebar filter
 #st.sidebar.header("Choose your product")
 
-# Create filters
-rev_range = st.slider('Select revenue range', min_value=df['rev'].min(), max_value=df['rev'].max(), value=(df['rev'].min(), df['rev'].max()))
-selected_brand = st.selectbox('Select brand', df['brand'].unique())
+# Filtering sidebar
+st.sidebar.subheader('Filter Data')
+min_rev, max_rev = st.sidebar.slider('Select revenue range', min_value=df['rev'].min(), max_value=df['rev'].max(), value=(df['rev'].min(), df['rev'].max()))
+selected_brand = st.sidebar.selectbox('Select brand', df['brand'].unique())
+url_filter = st.sidebar.text_input('Enter URL to filter')
+selected_category = st.sidebar.selectbox('Select category', df['category'].unique())
 
-# Apply filters to the data
-filtered_df = df[(df['rev'] >= rev_range[0]) & (df['rev'] <= rev_range[1])]
+# Apply filters
+filtered_df = df[(df['rev'] >= min_rev) & (df['rev'] <= max_rev)]
 if selected_brand:
     filtered_df = filtered_df[filtered_df['brand'] == selected_brand]
+if url_filter:
+    filtered_df = filtered_df[filtered_df['URL'].str.contains(url_filter)]
+if selected_category:
+    filtered_df = filtered_df[filtered_df['category'] == selected_category]
 
-# Display the filtered data
+# Display filtered data in table
 st.write(filtered_df)
-
-
-#st.dataframe(df)
 
