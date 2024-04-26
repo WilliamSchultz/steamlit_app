@@ -26,7 +26,9 @@ df = df[['domain', 'title', 'rev', 'items', 'category', 'brand', 'url']]
 
 #App title
 
-st.title("Grips product analysis")
+st.title("Grips")
+st.subheader("Product analysis")
+
 #st.markdown('##')
 
 #Slidebar filter
