@@ -84,7 +84,6 @@ st.download_button(
     data=csv,
     file_name='large_df.csv',
     mime='text/csv',
-    position='right'
 )
 st.write(filtered_df, width=1200)
 st.write(f"Results: {len(filtered_df)}")
