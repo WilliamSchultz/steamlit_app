@@ -66,6 +66,5 @@ if st.sidebar.button('Reset All Filters'):
     st.experimental_rerun()
 
 # Display filtered data in table
-#st.write(filtered_df, width=1200)
-st.dataframe(filtered_df.width=1000)
+st.write(filtered_df, width=1200)
 
