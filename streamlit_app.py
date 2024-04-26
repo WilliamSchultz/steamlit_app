@@ -27,16 +27,17 @@ st.title("Grips product analysis")
 #st.sidebar.header("Choose your product")
 
 # Create filters
-rev_range = st.slider('Select revenue range', min_value=df['rev'].min(), max_value=df['rev'].max(), value=(df['rev'].min(), df['rev'].max()))
-selected_brand = st.selectbox('Select brand', df['brand'].unique())
+st.write("## Filter Data")
+rev_range = st.select_slider("Select Revenue Range", options=range(0, 301, 50))
+selected_brand = st.selectbox("Select Brand", df["brand"].unique())
 
-# Apply filters to the data
-filtered_df = df[(df['rev'] >= rev_range[0]) & (df['rev'] <= rev_range[1])]
-if selected_brand:
-    filtered_df = filtered_df[filtered_df['brand'] == selected_brand]
+# Apply filters
+filtered_df = df[(df["rev"] >= rev_range) & (df["brand"] == selected_brand)]
 
-# Display the filtered data
+# Display filtered data
+st.write("## Filtered Data")
 st.write(filtered_df)
+
 
 
 
