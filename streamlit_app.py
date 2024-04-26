@@ -26,8 +26,8 @@ df = df[['domain', 'title', 'rev', 'items', 'category', 'brand', 'url']]
 
 #App title
 
-st.title("Allbirds.com")
-st.subheader("Product analysis")
+st.title("Grips")
+st.markdown("**Allbirds.com** Product Analysis")
 
 #st.markdown('##')
 
@@ -35,7 +35,7 @@ st.subheader("Product analysis")
 #st.sidebar.header("Choose your product")
 
 # Filtering sidebar
-st.sidebar.title('* Grips')
+#st.sidebar.title('* Grips')
 #htp="https://github.com/WilliamSchultz/steamlit_app/blob/main/Logomark.png"
 #st.image(htp, caption= 'logo', width=350)
 st.sidebar.subheader('Filter Data')
