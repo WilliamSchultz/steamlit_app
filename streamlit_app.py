@@ -7,7 +7,6 @@ df = df[['domain', 'title', 'category', 'brand', 'url', 'items', 'rev']]
 
 # Convert 'rev' column to dollar format
 df['rev'] = df['rev'].apply(lambda x: '${:,.2f}'.format(x))
-
 # -- Set page config
 #st.set_page_config(page_title='Grips')
 
