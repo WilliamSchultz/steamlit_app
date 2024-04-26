@@ -82,7 +82,7 @@ csv = convert_df(filtered_df)
 st.download_button(
     label="Download data as CSV",
     data=csv,
-    file_name='large_df.csv',
+    file_name='Grips-data-sample.csv',
     mime='text/csv',
 )
 st.write(filtered_df, width=1200)
