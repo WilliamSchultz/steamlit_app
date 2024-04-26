@@ -42,6 +42,16 @@ if url_filter:
 if selected_category:
     filtered_df = filtered_df[filtered_df['category'] == selected_category]
 
+# Display the dataframe in full browser size
+st.sidebar.title('Sidebar Title')
+#st.sidebar.write('Add your sidebar content here')
+#st.write(df, width=0)
+
+# Reset all filters button
+if st.sidebar.button('Reset All Filters'):
+    st.experimental_set_query_params()
+    st.experimental_rerun()
+
 # Display filtered data in table
-st.write(filtered_df)
+st.write(filtered_df, width=0)
 
