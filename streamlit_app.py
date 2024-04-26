@@ -72,5 +72,11 @@ if st.sidebar.button('Reset All Filters'):
     st.experimental_rerun()
 
 # Display filtered data in table
+st.download_button(
+    label="Download data as CSV",
+    data=csv,
+    file_name='Grips Product Sample.csv',
+    mime='text/csv',
+)
 st.write(filtered_df, width=1200)
 st.write(f"Results: {len(filtered_df)}")
