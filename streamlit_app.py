@@ -3,7 +3,7 @@ import streamlit as st
 
 df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/allb.csv?raw=true')
 
-df = df[['domain', 'title', 'category', 'brand', 'url', 'items', 'rev']]
+df = df[['domain', 'title', 'rev', 'items', 'category', 'brand', 'url']]
 
 # Convert 'rev' column to dollar format
 #df['rev'] = df['rev'].apply(lambda x: '${:,.2f}'.format(x))
