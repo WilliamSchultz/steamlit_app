@@ -27,6 +27,7 @@ st.title("Grips product analysis")
 #st.sidebar.header("Choose your product")
 
 # Filtering sidebar
+st.sidebar.title('title!')
 st.sidebar.subheader('Filter Data')
 min_rev, max_rev = st.sidebar.slider('Select revenue range', min_value=df['rev'].min(), max_value=df['rev'].max(), value=(df['rev'].min(), df['rev'].max()))
 selected_brand = st.sidebar.selectbox('Select brand', df['brand'].unique())
@@ -43,7 +44,7 @@ if selected_category:
     filtered_df = filtered_df[filtered_df['category'] == selected_category]
 
 # Display the dataframe in full browser size
-st.sidebar.title('Sidebar Title')
+#st.sidebar.title('Sidebar Title')
 #st.sidebar.write('Add your sidebar content here')
 #st.write(df, width=0)
 
