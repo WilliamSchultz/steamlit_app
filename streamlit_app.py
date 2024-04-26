@@ -47,7 +47,7 @@ filtered_df = df[(df['rev'] >= min_rev) & (df['rev'] <= max_rev) & df['brand'].i
 
 # Display the filtered dataframe
 st.write(filtered_df)
-```
+
 
 #st.dataframe(df)
 
