@@ -13,7 +13,7 @@ col1, col2, col3, col4 = st.columns(4)
 search_title = col1.text_input('Search Product Title')
 selected_brand = col2.selectbox('Select brand', df['brand'].unique())
 selected_category = col3.selectbox('Select category', df['category'].unique())
-url_filter = col4.text_input('Search URL'
+url_filter = col4.text_input('Search URL')
 
 #st.set_option('theme.secondaryBackgroundColor', '#A670FF')
 #st.set_option('theme.accent', '#A670FF')
