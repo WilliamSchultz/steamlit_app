@@ -20,7 +20,7 @@ df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/decat
 df = df[['title', 'rev', 'items', 'category', 'brand', 'url']]
 
 st.title("Grips")
-st.subheader("Allbirds.com Product Analysis")
+st.subheader("Decathlon.com Product Analysis")
 st.markdown("February 2024")
 
 col1, col2, col3, col4 = st.columns(4)
