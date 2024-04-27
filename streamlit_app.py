@@ -1,18 +1,10 @@
 import pandas as pd
 import streamlit as st
-st.set_page_config(layout="wide") 
-
-#df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/allb.csv?raw=true')
 
 df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/decathlon.csv?raw=true')
 
-df = df[['title', 'rev', 'items', 'category', 'brand', 'url']]
+df = df[['domain', 'title', 'category', 'brand', 'url', 'items', 'rev']]
 
-#st.set_option('theme.secondaryBackgroundColor', '#A670FF')
-#st.set_option('theme.accent', '#A670FF')
-
-# Convert 'rev' column to dollar format
-#df['rev'] = df['rev'].apply(lambda x: '${:,.2f}'.format(x))
 # -- Set page config
 #st.set_page_config(page_title='Grips')
 
@@ -28,69 +20,105 @@ df = df[['title', 'rev', 'items', 'category', 'brand', 'url']]
 
 #App title
 
-st.title("Grips")
-st.subheader("Allbirds.com Product Analysis")
-st.markdown("February 2024")
-
+#st.title("Grips product analysis")
 #st.markdown('##')
 
 #Slidebar filter
 #st.sidebar.header("Choose your product")
 
-# Filtering sidebar
-#st.sidebar.title('* Grips')
-#htp="https://github.com/WilliamSchultz/steamlit_app/blob/main/Logomark.png"
-#st.image(htp, caption= 'logo', width=350)
-st.sidebar.subheader('Filter Data')
-min_rev, max_rev = st.sidebar.slider('Select revenue range', min_value=df['rev'].min(), max_value=df['rev'].max(), value=(df['rev'].min(), df['rev'].max()))
+#st.dataframe(df)
 
-selected_brand = st.sidebar.selectbox('Select brand', df['brand'].unique())
-
-url_filter = st.sidebar.text_input('Enter URL to filter')
-
-selected_category = st.sidebar.selectbox('Select category', df['category'].unique())
-
-min_items, max_items = st.sidebar.slider('Select item sold range', min_value=df['items'].min(), max_value=df['items'].max(), value=(df['items'].min(), df['items'].max()))
-
-search_title = st.sidebar.text_input('Search by title')
-
-
-# Apply filters
-filtered_df = df[(df['rev'] >= min_rev) & (df['rev'] <= max_rev)]
-if selected_brand:
-    filtered_df = filtered_df[filtered_df['brand'] == selected_brand]
-if url_filter:
-    filtered_df = filtered_df[filtered_df['url'].str.contains(url_filter)]
-if selected_category:
-    filtered_df = filtered_df[filtered_df['category'] == selected_category]
-if min_items and max_items:
-    filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
-if search_title:
-    filtered_df = filtered_df[filtered_df['title'].str.contains(search_title)]
-
-# Display the dataframe in full browser size
-#st.sidebar.title('Sidebar Title')
-#st.sidebar.write('Add your sidebar content here')
-#st.write(df, width=0)
-
-# Reset all filters button
-if st.sidebar.button('Reset All Filters'):
-    st.experimental_set_query_params()
-    st.experimental_rerun()
-
-# Display filtered data in table
-@st.cache_data
-def convert_df(df):
-    # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode('utf-8')
-
-csv = convert_df(filtered_df)
-
-st.download_button(
-    label="Download data as CSV",
-    data=csv,
-    file_name='Grips-data-sample.csv',
-    mime='text/csv',
+from pandas.api.types import (
+    is_categorical_dtype,
+    is_datetime64_any_dtype,
+    is_numeric_dtype,
+    is_object_dtype,
 )
-st.write(filtered_df, width=1200)
-st.write(f"Results: {len(filtered_df)}")
+import pandas as pd
+import streamlit as st
+
+st.title("Grips product analysis")
+st.write(
+    """Find Product Opportunities with Grips
+    """
+)
+
+
+
+
+def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Adds a UI on top of a dataframe to let viewers filter columns
+
+    Args:
+        df (pd.DataFrame): Original dataframe
+
+    Returns:
+        pd.DataFrame: Filtered dataframe
+    """
+    modify = st.checkbox("Add filters")
+
+    if not modify:
+        return df
+
+    df = df.copy()
+
+    # Try to convert datetimes into a standard format (datetime, no timezone)
+    for col in df.columns:
+        if is_object_dtype(df[col]):
+            try:
+                df[col] = pd.to_datetime(df[col])
+            except Exception:
+                pass
+
+        if is_datetime64_any_dtype(df[col]):
+            df[col] = df[col].dt.tz_localize(None)
+
+    modification_container = st.container()
+
+    with modification_container:
+        to_filter_columns = st.multiselect("Filter dataframe on", df.columns)
+        for column in to_filter_columns:
+            left, right = st.columns((1, 20))
+            # Treat columns with < 10 unique values as categorical
+            if is_categorical_dtype(df[column]) or df[column].nunique() < 10:
+                user_cat_input = right.multiselect(
+                    f"Values for {column}",
+                    df[column].unique(),
+                    default=list(df[column].unique()),
+                )
+                df = df[df[column].isin(user_cat_input)]
+            elif is_numeric_dtype(df[column]):
+                _min = float(df[column].min())
+                _max = float(df[column].max())
+                step = (_max - _min) / 100
+                user_num_input = right.slider(
+                    f"Values for {column}",
+                    min_value=_min,
+                    max_value=_max,
+                    value=(_min, _max),
+                    step=step,
+                )
+                df = df[df[column].between(*user_num_input)]
+            elif is_datetime64_any_dtype(df[column]):
+                user_date_input = right.date_input(
+                    f"Values for {column}",
+                    value=(
+                        df[column].min(),
+                        df[column].max(),
+                    ),
+                )
+                if len(user_date_input) == 2:
+                    user_date_input = tuple(map(pd.to_datetime, user_date_input))
+                    start_date, end_date = user_date_input
+                    df = df.loc[df[column].between(start_date, end_date)]
+            else:
+                user_text_input = right.text_input(
+                    f"Substring or regex in {column}",
+                )
+                if user_text_input:
+                    df = df[df[column].astype(str).str.contains(user_text_input)]
+
+    return df
+
+st.dataframe(filter_dataframe(df))
