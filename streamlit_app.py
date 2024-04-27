@@ -24,10 +24,15 @@ with st.container():
     revenue_slider = col5.slider('Filter by Revenue', min_value=0, max_value=100000, value=(0, 100000))
     items_slider = col6.slider('Filter by Items', min_value=0, max_value=1000, value=(0, 1000))
 
-    if col7.button('Reset Filters'):
-            revenue_slider.set_value((0, 100000))
-            items_slider.set_value((0, 1000))
-            search_title.set_value('')
+col9, col10, col11, col12 = st.columns(4)
+if col9.button('Download CSV'):
+    # Function to download CSV file
+if col10.button('Reset all filters'):
+    search_title.text_input(None)
+    selected_brand.selectbox('All Brands')
+    selected_category.selectbox('All Categories')
+    url_filter.text_input(None)
+
 
 #st.set_option('theme.secondaryBackgroundColor', '#A670FF')
 #st.set_option('theme.accent', '#A670FF')
