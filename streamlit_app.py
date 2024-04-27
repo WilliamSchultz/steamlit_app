@@ -88,7 +88,7 @@ if selected_brand != 'All Brands':
     filtered_df = filtered_df[filtered_df['brand'] == selected_brand]
 if url_filter:
     filtered_df = filtered_df[filtered_df['url'].str.contains(url_filter)]
-if selected_category != 'All Categories'
+if selected_category != 'All Categories':
     filtered_df = filtered_df[filtered_df['category'] == selected_category]
 #if min_items and max_items:
 #    filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
