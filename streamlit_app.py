@@ -98,7 +98,7 @@ if search_title:
 min_items_slider, max_items_slider = items_slider
 filtered_df = filtered_df[(filtered_df['items'] >= min_items_slider) & (filtered_df['items'] <= max_items_slider)]
 
-min_items_slider_rev, max_items_slider_rev = items_slider
+min_items_slider_rev, max_items_slider_rev = revenue_slider
 filtered_df = filtered_df[(filtered_df['rev'] >= min_items_slider_rev) & (filtered_df['items'] <= max_items_slider_rev)]
 
 # Display the dataframe in full browser size
