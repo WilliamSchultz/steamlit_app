@@ -84,7 +84,7 @@ if selected_category:
 #if min_items and max_items:
     #filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
 if search_title:
-    filtered_df = filtered_df[filtered_df['title'].str.contains(search_title)
+    filtered_df = filtered_df[filtered_df['title'].str.contains(search_title)]
 
 # Display the dataframe in full browser size
 #st.sidebar.title('Sidebar Title')
