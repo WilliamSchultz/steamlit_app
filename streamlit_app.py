@@ -26,7 +26,11 @@ with st.container():
 
 col9, col10, col11, col12 = st.columns(4)
 if col9.button('Download CSV'):
-    # Function to download CSV file
+    st.download_button(
+        label="Download data as CSV",
+        data=csv,
+        file_name='Grips-data-sample.csv',
+        mime='text/csv')
 if col10.button('Reset all filters'):
     search_title.text_input(None)
     selected_brand.selectbox('All Brands')
