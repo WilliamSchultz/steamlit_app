@@ -9,10 +9,11 @@ df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/decat
 df = df[['title', 'rev', 'items', 'category', 'brand', 'url']]
 
 
-col1, col2, col3 = st.columns(3)
-search_title = col1.text_input('Enter Product to filter')
+col1, col2, col3, col4 = st.columns(4)
+search_title = col1.text_input('Search Product Title')
 selected_brand = col2.selectbox('Select brand', df['brand'].unique())
 selected_category = col3.selectbox('Select category', df['category'].unique())
+url_filter = col4.text_input('Search URL'
 
 #st.set_option('theme.secondaryBackgroundColor', '#A670FF')
 #st.set_option('theme.accent', '#A670FF')
@@ -47,18 +48,18 @@ st.markdown("February 2024")
 #st.sidebar.title('* Grips')
 #htp="https://github.com/WilliamSchultz/steamlit_app/blob/main/Logomark.png"
 #st.image(htp, caption= 'logo', width=350)
-st.sidebar.subheader('Filter Data')
-min_rev, max_rev = st.sidebar.slider('Select revenue range', min_value=df['rev'].min(), max_value=df['rev'].max(), value=(df['rev'].min(), df['rev'].max()))
+#st.sidebar.subheader('Filter Data')
+#min_rev, max_rev = st.sidebar.slider('Select revenue range', min_value=df['rev'].min(), max_value=df['rev'].max(), value=(df['rev'].min(), df['rev'].max()))
 
-selected_brand = st.sidebar.selectbox('Select brand', df['brand'].unique())
+#selected_brand = st.sidebar.selectbox('Select brand', df['brand'].unique())
 
-url_filter = st.sidebar.text_input('Enter URL to filter')
+#url_filter = st.sidebar.text_input('Enter URL to filter')
 
-selected_category = st.sidebar.selectbox('Select category', df['category'].unique())
+#selected_category = st.sidebar.selectbox('Select category', df['category'].unique())
 
-min_items, max_items = st.sidebar.slider('Select item sold range', min_value=df['items'].min(), max_value=df['items'].max(), value=(df['items'].min(), df['items'].max()))
+#min_items, max_items = st.sidebar.slider('Select item sold range', min_value=df['items'].min(), max_value=df['items'].max(), value=(df['items'].min(), df['items'].max()))
 
-search_title = st.sidebar.text_input('Search by title')
+#search_title = st.sidebar.text_input('Search by title')
 
 
 # Apply filters
@@ -71,7 +72,7 @@ if selected_category:
     filtered_df = filtered_df[filtered_df['category'] == selected_category]
 #if min_items and max_items:
     #filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
-#if search_title:
+if search_title:
     #filtered_df = filtered_df[filtered_df['title'].str.contains(search_title)]
 
 # Display the dataframe in full browser size
