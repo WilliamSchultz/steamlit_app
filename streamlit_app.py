@@ -66,14 +66,14 @@ url_filter = col4.text_input('Search URL')
 filtered_df = df[(df['rev'] >= min_rev) & (df['rev'] <= max_rev)]
 if selected_brand:
     filtered_df = filtered_df[filtered_df['brand'] == selected_brand]
-#if url_filter:
-    #filtered_df = filtered_df[filtered_df['url'].str.contains(url_filter)]
+if url_filter:
+    filtered_df = filtered_df[filtered_df['url'].str.contains(url_filter)]
 if selected_category:
     filtered_df = filtered_df[filtered_df['category'] == selected_category]
 #if min_items and max_items:
     #filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
 if search_title:
-    #filtered_df = filtered_df[filtered_df['title'].str.contains(search_title)]
+    filtered_df = filtered_df[filtered_df['title'].str.contains(search_title)]
 
 # Display the dataframe in full browser size
 #st.sidebar.title('Sidebar Title')
