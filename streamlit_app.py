@@ -1,12 +1,18 @@
 import pandas as pd
 import streamlit as st
-st.set_page_config(layout="wide") 
+st.set_page_config(layout="wide")
 
 #df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/allb.csv?raw=true')
 
 df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/decathlon.csv?raw=true')
 
 df = df[['title', 'rev', 'items', 'category', 'brand', 'url']]
+
+
+col1, col2 = st.columns(2)
+selected_brand = col1.selectbox('Select brand', df['brand'].unique())
+selected_category = col2.selectbox('Select category', df['category'].unique())
+selected_category = col2.selectbox('Select category', df['category'].unique())
 
 #st.set_option('theme.secondaryBackgroundColor', '#A670FF')
 #st.set_option('theme.accent', '#A670FF')
@@ -59,14 +65,14 @@ search_title = st.sidebar.text_input('Search by title')
 filtered_df = df[(df['rev'] >= min_rev) & (df['rev'] <= max_rev)]
 if selected_brand:
     filtered_df = filtered_df[filtered_df['brand'] == selected_brand]
-if url_filter:
-    filtered_df = filtered_df[filtered_df['url'].str.contains(url_filter)]
+#if url_filter:
+    #filtered_df = filtered_df[filtered_df['url'].str.contains(url_filter)]
 if selected_category:
     filtered_df = filtered_df[filtered_df['category'] == selected_category]
-if min_items and max_items:
-    filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
-if search_title:
-    filtered_df = filtered_df[filtered_df['title'].str.contains(search_title)]
+#if min_items and max_items:
+    #filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
+#if search_title:
+    #filtered_df = filtered_df[filtered_df['title'].str.contains(search_title)]
 
 # Display the dataframe in full browser size
 #st.sidebar.title('Sidebar Title')
@@ -74,9 +80,9 @@ if search_title:
 #st.write(df, width=0)
 
 # Reset all filters button
-if st.sidebar.button('Reset All Filters'):
-    st.experimental_set_query_params()
-    st.experimental_rerun()
+#if st.sidebar.button('Reset All Filters'):
+    #st.experimental_set_query_params()
+    #st.experimental_rerun()
 
 # Display filtered data in table
 @st.cache_data
