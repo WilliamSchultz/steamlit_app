@@ -17,7 +17,7 @@ selected_category = col2.selectbox('Select category', df['category'].unique())
 col1, col2 = st.columns(2)
 selected_brand = col1.selectbox('Select brand', df['brand'].unique())
 selected_category = col2.selectbox('Select category', df['category'].unique())
-selected_category = col2.selectbox('Select category', df['category'].unique()
+selected_category = col2.selectbox('Select category', df['category'].unique())
 
 #st.set_option('theme.secondaryBackgroundColor', '#A670FF')
 #st.set_option('theme.accent', '#A670FF')
