@@ -23,12 +23,6 @@ with st.container():
     col5, col6, col7, col8 = st.columns(4)
     revenue_slider = col5.slider('Filter by Revenue', min_value=0, max_value=100000, value=(0, 100000))
     items_slider = col6.slider('Filter by Items', min_value=0, max_value=100, value=(0, 100))
-    col7.button('Reset All Filters'):
-        search_title = ''
-        selected_brand = 'All Brands'
-        selected_category = 'All Categories'
-        url_filter = ''
-
 
 #st.set_option('theme.secondaryBackgroundColor', '#A670FF')
 #st.set_option('theme.accent', '#A670FF')
@@ -96,9 +90,13 @@ if url_filter:
 if selected_category != 'All Categories':
     filtered_df = filtered_df[filtered_df['category'] == selected_category]
 #if min_items and max_items:
-#    filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
+    #filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
 if search_title:
     filtered_df = filtered_df[filtered_df['title'].str.contains(search_title)]
+
+# Filters based on items_slider
+min_items_slider, max_items_slider = items_slider
+filtered_df = filtered_df[(filtered_df['items'] >= min_items_slider) & (filtered_df['items'] <= max_items_slider)]
 
 # Display the dataframe in full browser size
 #st.sidebar.title('Sidebar Title')
