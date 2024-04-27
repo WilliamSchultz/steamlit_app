@@ -2,9 +2,9 @@ import pandas as pd
 import streamlit as st
 st.set_page_config(layout="wide") 
 
-df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/allb.csv?raw=true')
+#df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/allb.csv?raw=true')
 
-#df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/decathlon.csv?raw=true')
+df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/decathlon.csv?raw=true')
 
 df = df[['title', 'rev', 'items', 'category', 'brand', 'url']]
 
