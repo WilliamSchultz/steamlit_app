@@ -22,7 +22,7 @@ url_filter = col4.text_input('Search URL')
 with st.container():
     col5, col6, col7, col8 = st.columns(4)
     revenue_slider = col5.slider('Filter by Revenue', min_value=0, max_value=100000, value=(0, 100000))
-    items_slider = col6.slider('Filter by Items', min_value=0, max_value=100, value=(0, 100))
+    items_slider = col6.slider('Filter by Items', min_value=0, max_value=1000, value=(0, 1000))
 
 #st.set_option('theme.secondaryBackgroundColor', '#A670FF')
 #st.set_option('theme.accent', '#A670FF')
