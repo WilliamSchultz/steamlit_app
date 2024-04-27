@@ -15,7 +15,7 @@ st.markdown("February 2024")
 col1, col2, col3, col4 = st.columns(4)
 search_title = col1.text_input('Search Product Title')
 selected_brand = col2.selectbox('Select a brand', ['All Brands'] + df['brand'].unique().tolist())
-selected_category = col3.selectbox('Select category', df['category'].unique())
+selected_category = col3.selectbox('Select category', ['All Categories'] + df['category'].unique().tolist())
 url_filter = col4.text_input('Search URL')
 
 # Second row of filters in a container
@@ -86,10 +86,9 @@ filtered_df = df
 
 if selected_brand != 'All Brands':
     filtered_df = filtered_df[filtered_df['brand'] == selected_brand]
-
 if url_filter:
     filtered_df = filtered_df[filtered_df['url'].str.contains(url_filter)]
-if selected_category:
+if selected_category != 'All Categories'
     filtered_df = filtered_df[filtered_df['category'] == selected_category]
 #if min_items and max_items:
 #    filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
