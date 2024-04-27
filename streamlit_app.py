@@ -10,7 +10,7 @@ df = df[['title', 'rev', 'items', 'category', 'brand', 'url']]
 
 
 col1, col2, col3 = st.columns(3)
-url_filter = co1.text_input('Enter URL to filter')
+url_filter = col1.text_input('Enter URL to filter')
 selected_brand = col2.selectbox('Select brand', df['brand'].unique())
 selected_category = col3.selectbox('Select category', df['category'].unique())
 
