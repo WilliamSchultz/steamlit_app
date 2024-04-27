@@ -82,14 +82,17 @@ with st.container():
 #if search_title:
     #filtered_df = filtered_df[filtered_df['title'].str.contains(search_title)]
 
-# Apply filters
-filtered_df = df[df['brand'] == selected_brand]
+filtered_df = df
+
+if selected_brand != 'All Brands':
+    filtered_df = filtered_df[filtered_df['brand'] == selected_brand]
+
 if url_filter:
     filtered_df = filtered_df[filtered_df['url'].str.contains(url_filter)]
 if selected_category:
     filtered_df = filtered_df[filtered_df['category'] == selected_category]
 #if min_items and max_items:
-    #filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
+#    filtered_df = filtered_df[(filtered_df['items'] >= min_items) & (filtered_df['items'] <= max_items)]
 if search_title:
     filtered_df = filtered_df[filtered_df['title'].str.contains(search_title)]
 
