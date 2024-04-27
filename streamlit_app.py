@@ -14,7 +14,7 @@ st.markdown("February 2024")
 
 col1, col2, col3, col4 = st.columns(4)
 search_title = col1.text_input('Search Product Title')
-selected_brand = col2.selectbox('Select brand', df['brand'].unique())
+selected_brand = col2.selectbox('Select a brand', ['All Brands'] + df['brand'].unique().tolist())
 selected_category = col3.selectbox('Select category', df['category'].unique())
 url_filter = col4.text_input('Search URL')
 
