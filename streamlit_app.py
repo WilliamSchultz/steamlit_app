@@ -24,19 +24,6 @@ with st.container():
     revenue_slider = col5.slider('Filter by Revenue', min_value=0, max_value=100000, value=(0, 100000))
     items_slider = col6.slider('Filter by Items', min_value=0, max_value=1000, value=(0, 1000))
 
-col9, col10, col11, col12 = st.columns(4)
-if col9.button('Download CSV'):
-    st.download_button(
-        label="Download data as CSV",
-        data=csv,
-        file_name='Grips-data-sample.csv',
-        mime='text/csv')
-if col10.button('Reset all filters'):
-    search_title.text_input(None)
-    selected_brand.selectbox('All Brands')
-    selected_category.selectbox('All Categories')
-    url_filter.text_input(None)
-
 
 #st.set_option('theme.secondaryBackgroundColor', '#A670FF')
 #st.set_option('theme.accent', '#A670FF')
