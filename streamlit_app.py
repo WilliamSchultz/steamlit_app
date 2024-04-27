@@ -9,15 +9,11 @@ df = pd.read_csv('https://github.com/WilliamSchultz/steamlit_app/blob/main/decat
 df = df[['title', 'rev', 'items', 'category', 'brand', 'url']]
 
 
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 selected_brand = col1.selectbox('Select brand', df['brand'].unique())
 selected_category = col2.selectbox('Select category', df['category'].unique())
 selected_category = col2.selectbox('Select category', df['category'].unique())
-
-col1, col2 = st.columns(2)
-selected_brand = col1.selectbox('Select brand', df['brand'].unique())
-selected_category = col2.selectbox('Select category', df['category'].unique())
-selected_category = col2.selectbox('Select category', df['category'].unique())
+min_rev, max_rev = col3.slider('Select revenue range', min_value=df['rev'].min(), max_value=df['rev'].max(), value=(df['rev'].min(), df['rev'].max()))
 
 #st.set_option('theme.secondaryBackgroundColor', '#A670FF')
 #st.set_option('theme.accent', '#A670FF')
